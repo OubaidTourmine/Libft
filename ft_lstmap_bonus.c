@@ -17,3 +17,22 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*ghlid;
 	t_list	*ghliiiiiid;
 	void	*s;
+
+	if (!lst || !f || !del)
+		return (NULL);
+	ghlid = NULL;
+	while (lst)
+	{
+		s = f(lst->content);
+		ghliiiiiid = ft_lstnew(s);
+		if (ghliiiiiid == NULL)
+		{
+			ft_lstclear(&ghlid, del);
+			(*del)(s);
+			return (NULL);
+		}
+		ft_lstadd_back(&ghlid, ghliiiiiid);
+		lst = lst->next;
+	}
+	return (ghlid);
+}
