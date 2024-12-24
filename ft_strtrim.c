@@ -55,3 +55,32 @@ static int	ft_end(const char *s, const char *set)
 	}
 	return (end);
 }
+
+char	*ft_strtrim(const char *s1, const char *set)
+{
+	int		strt;
+	int		end;
+	int		len;
+	int		j;
+	char	*str;
+
+	if (s1 == NULL)
+		return (NULL);
+	strt = ft_start(s1, set);
+	end = ft_end(s1, set);
+	j = 0;
+	len = end - strt + 1;
+	if (strt > end)
+		return (ft_strdup(""));
+	str = (char *)malloc(len + 1);
+	if (str == NULL)
+		return (str);
+	while (strt <= end)
+	{
+		str[j] = s1[strt];
+		strt++;
+		j++;
+	}
+	str[len] = '\0';
+	return (str);
+}
